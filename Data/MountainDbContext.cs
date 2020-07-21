@@ -14,18 +14,18 @@ namespace Data
 
         public DbSet<MountainInfo> Mountains { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
             
-            List<MountainInfo> mountains = MountainSeeder.GetMountainInfos();
-            int mountainIndex = 1;
-            mountains.ForEach(mnt =>
-            {
-                mnt.Id = mountainIndex;
-                mountainIndex++;
-                modelBuilder.Entity<MountainInfo>().HasData(mnt);
-            });
-        }
+        //    List<MountainInfo> mountains = MountainSeeder.GetMountainInfos();
+        //    int mountainIndex = 1;
+        //    mountains.ForEach(mnt =>
+        //    {
+        //        mnt.Id = mountainIndex;
+        //        mountainIndex++;
+        //        modelBuilder.Entity<MountainInfo>().HasData(mnt);
+        //    });
+        //}
 
 
     }
