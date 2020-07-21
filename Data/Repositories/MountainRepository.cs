@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Data.Repositories
@@ -37,6 +39,24 @@ namespace Data.Repositories
             }
         }
 
+        public async Task<bool> RemoveMountain(int id)
+        {
+            using (var dbContext = new MountainDbContext(_options))
+            {
+                try
+                {
+                    var mountainToDelete = dbContext.Mountains.Single(x => x.Id == id);
+                    dbContext.Mountains.Remove(mountainToDelete);
+                    await dbContext.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+            }
+        }
     }
 
 }

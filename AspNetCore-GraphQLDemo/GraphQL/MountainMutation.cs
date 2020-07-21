@@ -21,6 +21,17 @@ namespace AspNetCore_GraphQLDemo.GraphQL
                     mountainMessageService.AddMountainAddedMessage(mountain);
                     return mountain;
                 });
+
+            FieldAsync<MountainType>("removeMountain",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<MountainIdInputType>> { Name = "id" }),
+                resolve: async context =>
+                {
+                    var mountain = context.GetArgument<MountainInfo>("id");
+                    await mountainRepository.RemoveMountain(mountain.Id);
+                    return mountain;
+                });
+
         }
 
     }

@@ -59,3 +59,15 @@ mutation {
 }
 ```
 
+And the following mutation shows how we can remove a mountain using GraphQL and the 
+removeMountain mutation: 
+
+
+```json 
+mutation {
+  removeMountain(id: {
+    id: 365
+  }) { id }
+}
+```
+

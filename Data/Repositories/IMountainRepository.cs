@@ -7,5 +7,7 @@ namespace Data.Repositories
     {
         Task<IEnumerable<MountainInfo>> GetAll();
         Task<MountainInfo> AddMountain(MountainInfo mountain);
+        Task<bool> RemoveMountain(int id);
+
     }
 }
