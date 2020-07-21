@@ -9,6 +9,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types
         public MountainSchema(IDependencyResolver resolver)  : base(resolver)
         {
             Query = resolver.Resolve<MountainQuery>();
+            Mutation = resolver.Resolve<MountainMutation>();
         }
 
     }

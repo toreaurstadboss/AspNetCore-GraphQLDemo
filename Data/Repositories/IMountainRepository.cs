@@ -6,5 +6,6 @@ namespace Data.Repositories
     public interface IMountainRepository
     {
         Task<IEnumerable<MountainInfo>> GetAll();
+        Task<MountainInfo> AddMountain(MountainInfo mountain);
     }
 }

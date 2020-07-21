@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore_GraphQLDemo.GraphQL.Messaging;
 using AspNetCore_GraphQLDemo.GraphQL.Types;
 using Data;
 using Data.Repositories;
@@ -11,6 +12,7 @@ using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebSockets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +23,11 @@ namespace AspNetCore_GraphQLDemo
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            _env = env;
             Configuration = configuration;
         }
 
@@ -52,21 +57,21 @@ namespace AspNetCore_GraphQLDemo
 
             services.AddScoped<MountainSchema>();
 
+            services.AddSingleton<MountainMessageService>();
+
+            services.AddGraphQL(x => { x.ExposeExceptions = _env.IsDevelopment(); }).AddGraphTypes(ServiceLifetime.Scoped)
+            .AddUserContextBuilder(httpContext => httpContext.User)
+            .AddDataLoader()
+            .AddWebSockets();
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyAllowSpecificOrigins",
-                                  builder =>
-                                  {
-                                      builder.AllowAnyOrigin().AllowAnyMethod();
-                                  });
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyMethod();
+                    });
             });
-
-            services.AddGraphQL(x =>
-            {
-                x.ExposeExceptions = true; ///TODO: turn off in production
-            }).AddGraphTypes(ServiceLifetime.Scoped)
-            .AddUserContextBuilder(httpContext => httpContext.User)
-            .AddDataLoader();
 
         }
 
@@ -78,16 +83,20 @@ namespace AspNetCore_GraphQLDemo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            //app.UseRouting();
 
             app.UseCors("MyAllowSpecificOrigins");
 
-            app.UseAuthorization();
+            app.UseWebSockets();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseGraphQLWebSockets<MountainSchema>("/graphql");
+
+            //app.UseAuthorization();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
 
             app.UseGraphQL<MountainSchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
