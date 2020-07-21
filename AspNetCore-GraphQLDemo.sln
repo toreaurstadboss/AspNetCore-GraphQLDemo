@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore-GraphQLDemo", "AspNetCore-GraphQLDemo\AspNetCore-GraphQLDemo.csproj", "{2017D6B5-51D3-48C3-AD39-492088A9EAD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainDataSet.Console", "MountainDataSet.Test\MountainDataSet.Console.csproj", "{366A1E74-431F-4872-8767-BE45EA0342BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2017D6B5-51D3-48C3-AD39-492088A9EAD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2017D6B5-51D3-48C3-AD39-492088A9EAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2017D6B5-51D3-48C3-AD39-492088A9EAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2017D6B5-51D3-48C3-AD39-492088A9EAD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{366A1E74-431F-4872-8767-BE45EA0342BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{366A1E74-431F-4872-8767-BE45EA0342BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{366A1E74-431F-4872-8767-BE45EA0342BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{366A1E74-431F-4872-8767-BE45EA0342BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {582F13EF-2AB3-4C8F-BC90-6C6B39A3A84D}
+	EndGlobalSection
+EndGlobal
