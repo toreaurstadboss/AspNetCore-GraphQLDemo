@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore-GraphQLDemo", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainDataSet.Console", "MountainDataSet.Test\MountainDataSet.Console.csproj", "{366A1E74-431F-4872-8767-BE45EA0342BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{C3A374B9-7F3E-4946-B109-53A0B560590D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{366A1E74-431F-4872-8767-BE45EA0342BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{366A1E74-431F-4872-8767-BE45EA0342BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{366A1E74-431F-4872-8767-BE45EA0342BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A374B9-7F3E-4946-B109-53A0B560590D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A374B9-7F3E-4946-B109-53A0B560590D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A374B9-7F3E-4946-B109-53A0B560590D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A374B9-7F3E-4946-B109-53A0B560590D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
