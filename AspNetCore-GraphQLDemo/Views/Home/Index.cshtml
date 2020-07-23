@@ -62,11 +62,15 @@
 
         });
 
+        toastr.success('Loaded GraphQL data from server into the UI successfully.');
+
+
     }
 
     $("#btnLoadData").click(function () {
         var gqlQueryContents = $("#GraphQLQuery").val();
         LoadGraphQLData(gqlQueryContents, LoadGraphQLDataIntoUi);
+        toastr.info('Retrieving data from API using GraphQL.');
     });
 
     $(document).ready(function () {
