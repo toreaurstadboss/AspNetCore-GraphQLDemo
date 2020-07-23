@@ -2,6 +2,32 @@
 
 <h5 id="MountainTitle"></h5>
 
+<pre>
+The data below was loaded with the following Javascript:
+
+ $(document).ready(function () {
+        
+        var urlParams = new URLSearchParams(window.location.search);
+        var idParam = urlParams.get('id');
+
+        var initialQuery = `
+               {
+ mountain(id: {id: ${idParam}}) {
+    id
+    fylke: county
+    kommune: muncipiality
+    hoydeOverHavet: calculatedMetresAboveSeaLevel
+    offisieltNavn: officialName
+    primaerfaktor: calculatedPrimaryFactor
+    referansePunkt: referencePoint
+}
+}`;
+        LoadGraphQLData(initialQuery, LoadGraphQLDataIntoUi);
+
+    });
+</pre>
+
+
 
 <table id="mountainsTable" class="table table-striped table-hover table-dark">
     <thead>
