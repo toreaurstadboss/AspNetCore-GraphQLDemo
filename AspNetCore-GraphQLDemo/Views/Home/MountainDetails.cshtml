@@ -1,1 +1,71 @@
-﻿
+﻿<h3>Details</h3>
+
+<h5 id="MountainTitle"></h5>
+
+
+<table id="mountainsTable" class="table table-striped table-hover table-dark">
+    <thead>
+        <tr id="mountainsTableHeaderRow"></tr>
+    <tbody id="mountainsTableBody"></tbody>
+    </thead>
+</table>
+
+<script>
+
+    function LoadGraphQLDataIntoUi(result) {
+
+        var tableBody = $("#mountainsTableBody");
+        tableBody.empty();
+
+        var tableHeaderRow = $("#mountainsTableHeaderRow");
+        tableHeaderRow.empty();
+
+        var mountain = result.data.mountain;
+
+        $("#MountainTitle").text(mountain.officialName);
+
+        Object.keys(mountain).forEach(key => {
+            if (key === '__typename') {
+                return;
+            }
+            tableHeaderRow.append(`<th>${key}</th>`);
+        });;
+
+        tableBody.append('<tr>');
+
+        Object.keys(mountain).forEach(key => {
+            if (key === '__typename') {
+                return;
+            }
+
+            tableBody.append(`<td>${mountain[key]}</td>`);
+
+        });
+
+        tableBody.append('</tr>');
+
+    }
+
+
+    $(document).ready(function () {
+        
+        var urlParams = new URLSearchParams(window.location.search);
+        var idParam = urlParams.get('id');
+
+        var initialQuery = `
+               {
+ mountain(id: {id: ${idParam}}) {
+    id
+    fylke: county
+    kommune: muncipiality
+    hoydeOverHavet: calculatedMetresAboveSeaLevel
+    offisieltNavn: officialName
+    primaerfaktor: calculatedPrimaryFactor
+    referansePunkt: referencePoint
+}
+}`;
+        LoadGraphQLData(initialQuery, LoadGraphQLDataIntoUi);
+
+    });
+
+</script>

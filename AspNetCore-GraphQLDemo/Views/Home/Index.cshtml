@@ -23,7 +23,6 @@
 
     function LoadGraphQLDataIntoUi(result) {
 
-
         var tableBody = $("#mountainsTableBody");
         tableBody.empty();
 
@@ -50,7 +49,7 @@
                     return;
                 }
                 if (key === 'id') {
-                    tableBody.append(`<td><a asp-controller='Home' asp-action='MountainDetails' asp-route-id='${mountain[key]}'>${mountain[key]}</a></td>`);
+                    tableBody.append(`<td><a href='/home/mountaindetails/?id=${mountain[key]}'><i class='fa fa-arrow-right'></i></a> ${mountain[key]}</td>`);
                     return;
                 }
                 tableBody.append(`<td>${mountain[key]}</td>`);
