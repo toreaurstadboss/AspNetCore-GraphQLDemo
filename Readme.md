@@ -49,8 +49,8 @@ mutation {
    county: "Svalbard"
   muncipiality: "Svalbard"
   officialName: "Newtontoppen"
-  referencePoint: "Isbjønn på toppen"
-  comments: "Husk rask snøskuter",
+  referencePoint: "IsbjÃ¸nn pÃ¥ toppen"
+  comments: "Husk rask snÃ¸skuter",
   metresAboveSeaLevel: "1713",
   primaryFactor: "1713"
   }) {    
@@ -71,3 +71,14 @@ mutation {
 }
 ```
 
+### Client library 
+The following port of Apollo Client (an industry standard GraphQL client for several platforms, such as node/npm) is made browser ready from this Github repo:
+https://github.com/Akryum/apollo-client-browser
+
+It can be included like the following script reference or copied into the wwwroot 
+folder locally for an Asp.Net Core application:
+
+
+```js
+<script src="https://unpkg.com/apollo-client-browser@1.7.0"></script>
+```

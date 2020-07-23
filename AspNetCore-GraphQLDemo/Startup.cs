@@ -44,7 +44,9 @@ namespace AspNetCore_GraphQLDemo
                 options.AllowSynchronousIO = true;
             });
 
-            services.AddControllers();
+            services.AddControllersWithViews();
+
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddDbContext<MountainDbContext>(options =>
             {
@@ -81,9 +83,11 @@ namespace AspNetCore_GraphQLDemo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
 
-            //app.UseRouting();
+            app.UseStaticFiles(); 
+            app.UseRouting();
 
             app.UseCors("MyAllowSpecificOrigins");
 
@@ -93,10 +97,10 @@ namespace AspNetCore_GraphQLDemo
 
             //app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
 
             app.UseGraphQL<MountainSchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());

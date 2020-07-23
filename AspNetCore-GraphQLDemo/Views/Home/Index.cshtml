@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2>Highest mountains in Norwegian muncipialities</h2>
+    <p>Data retrieved using Apollo client and GraphQL</p>
+
+    <table id="mountainsTable" class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fylke</th>
+                <th>Kommune</th>
+                <th>Høyde over havet</th>
+                <th>Offisielt navn</th>
+                <th>Primærfaktor</th>
+                <th>Referansepunkt</th>
+            </tr>
+            <tbody id="mountainsTableBody"></tbody>
+        </thead>
+
+    </table>
+
+  
+    @*<script src="https://unpkg.com/apollo-client-browser@1.7.0"></script>*@ <!-- Use this CDN if convenient, version 1.7.0 of Apollo-Client ported to browser ready version copied locally below.-->
+    <script src="~/js/apollo-client.min.js"></script>
+
+    <script>
+        var apolloClient = new Apollo.lib.ApolloClient({
+            networkInterface: Apollo.lib.createNetworkInterface({
+                uri: 'http://localhost:2542/graphql',
+                transportBatching: true,
+            }), connectToDevTools: true
+        });
+
+        var query = Apollo.gql(`
+            {
+                mountains { 
+                    id
+                    fylke: county
+                    kommune: muncipiality
+                    hoydeOverHavet: calculatedMetresAboveSeaLevel
+                    offisieltNavn: officialName
+                    primaerfaktor: calculatedPrimaryFactor
+                    referansePunkt: referencePoint
+                }
+            }
+        `);
+
+        apolloClient.query({
+            query: query,
+            variables: {}
+        }).then(result => {
+            console.log(result);
+
+            result.data.mountains.forEach(mountain => {
+
+                var div = document.getElementById('mountainsTableBody');
+                div.innerHTML += `
+              <tr>
+                <td class='col-2'>${mountain.id}</td>
+                <td class='col-2'>${mountain.fylke}</td>
+                <td class='col-2'>${mountain.kommune}</td>
+                <td class='col-2'>${mountain.hoydeOverHavet}</td>
+                <td class='col-2'>${mountain.offisieltNavn}</td>
+                <td class='col-2'>${mountain.primaerfaktor}</td>
+                <td class='col-2'>${mountain.referansePunkt}</td>
+              </tr>
+            `;
+
+            });
+
+
+        });
+
+    </script>
+
+</body>
+</html>
