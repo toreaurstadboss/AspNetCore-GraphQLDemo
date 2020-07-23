@@ -47,6 +47,8 @@ namespace AspNetCore_GraphQLDemo
 
             services.AddControllersWithViews();
 
+            services.AddHttpContextAccessor();
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddDbContext<MountainDbContext>(options =>

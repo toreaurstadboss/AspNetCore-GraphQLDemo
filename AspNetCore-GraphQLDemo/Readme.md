@@ -81,6 +81,7 @@ folder locally for an Asp.Net Core application:
 
 ```js
 <script src="https://unpkg.com/apollo-client-browser@1.7.0"></script>
+
 ```
 
 
@@ -91,3 +92,17 @@ over with customizable data over the network, allowing the client
 to specify which data is interesting.
 
 ![Dynamic table ](dynamictable.png)
+
+
+### Subscription
+
+Go to the Playground (open up a tab) and paste in this subscription:
+
+```
+subscription {detailsDisplayed {id} }
+
+```
+
+Back in the DEMO, whenever you go into the details page, the subscription will show 
+that details is displayed with a given id. This shows that GraphQL supports a Pub Sub pattern 
+in case it is desired to support notifications. This is done using Web Sockets. 
