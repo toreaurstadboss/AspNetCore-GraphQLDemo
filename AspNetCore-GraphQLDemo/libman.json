@@ -16,6 +16,11 @@
       "files": [
         "jquery.min.js"
       ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }
