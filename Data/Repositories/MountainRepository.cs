@@ -57,6 +57,25 @@ namespace Data.Repositories
                 }
             }
         }
+
+        public async Task<MountainInfo> GetById(int id)
+        {
+            using (var dbContext = new MountainDbContext(_options))
+            {
+                try
+                {
+                    var mountain = dbContext.Mountains.Single(x => x.Id == id);
+                    return await dbContext.Mountains.SingleOrDefaultAsync(x => x.Id == id);
+
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+            
+        }
+
     }
 
 }

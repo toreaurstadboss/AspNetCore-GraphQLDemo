@@ -8,5 +8,10 @@ namespace AspNetCore_GraphQLDemo.Controllers
         {
             return View();
         }
+
+        public IActionResult MountainDetails()
+        {
+            return View();
+        }
     }
 }
