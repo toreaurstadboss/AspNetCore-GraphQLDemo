@@ -1,7 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 
-namespace AspNetCore_GraphQLDemo.GraphQL.Types
+namespace AspNetCore_GraphQLDemo.GraphQL
 {
     public class MountainSchema : Schema
     {
@@ -10,6 +10,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types
         {
             Query = resolver.Resolve<MountainQuery>();
             Mutation = resolver.Resolve<MountainMutation>();
+            Subscription = resolver.Resolve<MountainSubscription>();
         }
 
     }

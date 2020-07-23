@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore_GraphQLDemo.GraphQL;
 using AspNetCore_GraphQLDemo.GraphQL.Messaging;
 using AspNetCore_GraphQLDemo.GraphQL.Types;
 using Data;
@@ -60,6 +61,8 @@ namespace AspNetCore_GraphQLDemo
             services.AddScoped<MountainSchema>();
 
             services.AddSingleton<MountainMessageService>();
+
+            services.AddSingleton<MountainDetailsDisplayedMessageService>();
 
             services.AddGraphQL(x => { x.ExposeExceptions = _env.IsDevelopment(); }).AddGraphTypes(ServiceLifetime.Scoped)
             .AddUserContextBuilder(httpContext => httpContext.User)

@@ -1,8 +1,9 @@
-﻿using Data;
+﻿using AspNetCore_GraphQLDemo.GraphQL.Types;
+using Data;
 using Data.Repositories;
 using GraphQL.Types;
 
-namespace AspNetCore_GraphQLDemo.GraphQL.Types
+namespace AspNetCore_GraphQLDemo.GraphQL
 {
     public class MountainQuery : ObjectGraphType
     {
