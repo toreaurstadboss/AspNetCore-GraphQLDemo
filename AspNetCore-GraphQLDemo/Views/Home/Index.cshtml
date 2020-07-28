@@ -3,9 +3,17 @@
 
 <p>Enter GraphQL query below</p>
 
+<style type="text/css">
+    .btn {
+        margin: 10px;
+    }
+</style>
+
 <div class="row" style="padding:10px">
     <textarea id="GraphQLQuery" style="height:250px" class="col-md-6 form-control"></textarea>
-    <button id="btnLoadData" class="btn btn-success col-md-3 offset-3"><i class="fa-cloud-download fa"></i>&nbsp;Load data</button>
+    <button id="btnLoadData" class="btn btn-success col-md-2"><i class="fa-cloud-download fa"></i>&nbsp;Load data</button>
+    <button id="btnConnect" class="btn btn-info col-md-2"><i class="fa-connectdevelop fa"></i>&nbsp;Connect demo</button>
+
 </div>
 
 <table id="mountainsTable" class="table table-striped table-hover table-dark">
@@ -62,6 +70,12 @@
 
 
     }
+
+    $("#btnConnect").click(function () {
+        ConnectDemo();
+
+    });
+
 
     $("#btnLoadData").click(function () {
         var gqlQueryContents = $("#GraphQLQuery").val();
