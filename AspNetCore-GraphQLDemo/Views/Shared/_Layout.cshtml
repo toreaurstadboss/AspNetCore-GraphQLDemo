@@ -61,5 +61,32 @@
     <script src="~/js/graphql.js"></script>
     <script src="~/dist/bundle.js"></script>
 
+    
+<script>
+    function callBackConnectDemo(data) {
+        //debugger
+        //if (!(!!data && !!data.detailsDisplayed)) {
+        //    return;
+        //}
+        console.log(data.detailsDisplayed.id);
+        setTimeout(function() {
+                toastr.info('A user is looking at mountain with ID: ' + data.detailsDisplayed.id);
+            },
+            3000);
+    }
+
+    var clientForGraphQl;
+
+    $("#btnConnect").click(function () {
+        
+        var DETAILS_SHOWED = `subscription {detailsDisplayed {id} }`;
+        var url = `ws://localhost:2542/graphql`;
+        clientForGraphQl = ConnectToWebSocket(url);
+        Subscribe(clientForGraphQl, DETAILS_SHOWED, {}, callBackConnectDemo);
+
+    });
+</script>
+
+
 </body>
 </html>

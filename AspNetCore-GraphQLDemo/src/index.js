@@ -1,17 +1,12 @@
 ﻿import _ from 'lodash';
-//import * as ConnectDemo from './apollo-subscribe'; 
-import { ApolloClient, createNetworkInterface, gql } from 'apollo-client';
-import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+import { ApolloClient } from 'apollo-client';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 
 
-//import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
-
-
-function ConnectToWebSocket() {
+export function ConnectToWebSocket(url) {
     // Create regular NetworkInterface by using apollo-client's API:
    
-    const GRAPHQL_ENDPOINT = `http://localhost:2542/graphql`;
-    const GRAPHQL_SUBSCRIPTION_ENDPOINT = `ws://localhost:2542/graphql`;
+    var GRAPHQL_SUBSCRIPTION_ENDPOINT = url;
 
     //// Create WebSocket client
     const wsClient = new SubscriptionClient(`${GRAPHQL_SUBSCRIPTION_ENDPOINT}`,
@@ -22,34 +17,19 @@ function ConnectToWebSocket() {
             }
         });
 
-    const networkInterface = createNetworkInterface({
-	    uri: GRAPHQL_ENDPOINT,
-	    opts: {
-		    credentials: `same- origin`
-	    },
-    });
-
-    //////// Extend the network interface with the WebSocket
-    //const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
-    //    networkInterface,
-    //    wsClient
-    //);
-
     const client = new ApolloClient({
 	    networkInterface: wsClient
-	    // …
     });
 
     return client;
 
 }
 
-function Subscribe(client, gql, vars, callbackFun) {
+export function Subscribe(client, gqlInput, vars, callbackFun) {
 
      
     client.subscribe({
-        query: Apollo.gql`
-   subscription {detailsDisplayed {id} }`,
+        query: Apollo.gql(gqlInput),
         variables: vars
     }).subscribe({
         next(data) {
@@ -60,25 +40,30 @@ function Subscribe(client, gql, vars, callbackFun) {
 
 }
 
+
+//expose methods to window object 
+
+window.ConnectToWebSocket = ConnectToWebSocket;
+
+window.Subscribe = Subscribe; 
+
+
+
+
+
+
+
+//test code to check WebPack is working..
+
+/*
 function createChild() {
-    var element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'Webpack'], ' ');
-    return element;
+	var element = document.createElement('div');
+	element.innerHTML = _.join(['Hello', 'Webpack'], ' ');
+	return element;
 }
 document.body.appendChild(createChild());
-
-const DETAILS_SHOWED = Apollo.gql(`subscription {detailsDisplayed {id} }`);
-
-
-function callBackConnectDemo(data) {
-    if (!!data && !!data.detailsDisplayed) {
-	    toastr.info(`A user selected to display the mountain with ID: ${data.detailsDisplayed.id} `);
-    }
-}
+*/
 
 
-var client = ConnectToWebSocket();
-
-Subscribe(client, DETAILS_SHOWED, {}, callBackConnectDemo);
 
 

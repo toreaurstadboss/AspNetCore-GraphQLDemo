@@ -9,7 +9,11 @@ module.exports = (env, argv) => {
 		entry: ['./src/index.js', './src/sass/index.scss'],
 		output: {
 			filename: bundleFileName + '.js',
-			path: path.resolve(__dirname, dirName)
+			path: path.resolve(__dirname, dirName),
+			library: 'gqltools',
+			libraryTarget: 'umd',
+			umdNamedDefine: false,
+			libraryExport: 'default'
 		},
 		module: {
 			rules: [
