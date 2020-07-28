@@ -106,3 +106,12 @@ subscription {detailsDisplayed {id} }
 Back in the DEMO, whenever you go into the details page, the subscription will show 
 that details is displayed with a given id. This shows that GraphQL supports a Pub Sub pattern 
 in case it is desired to support notifications. This is done using Web Sockets. 
+
+
+### Adding webpack to the Asp.Net Core
+Since the Apollo client is only contains minified Js and is from a Github repo that is not recently maintained,
+we will add support for ES6 transpilation through Webpack to use the official Apollo 
+library instead through NPM. A guide how to set up Asp.Net Core 3.1 with Webpack (4)
+is here, follow step 2 to add NPM and set up WebPack to an existing Asp.Net Core 3.1: 
+https://romansimuta.com/posts/how-to-add-webpack-4-to-asp-net-core-3-1-mvc-application-step-by-step/
+
