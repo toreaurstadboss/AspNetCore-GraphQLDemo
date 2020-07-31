@@ -110,7 +110,10 @@ namespace AspNetCore_GraphQLDemo
             app.UseGraphQL<MountainSchema>();
             if (env.IsDevelopment())
             {
-                app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
+                app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+                {
+                    
+                });
             }
         }
     }
