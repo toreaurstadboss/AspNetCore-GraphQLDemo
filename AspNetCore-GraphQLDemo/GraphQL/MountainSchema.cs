@@ -15,8 +15,6 @@ namespace AspNetCore_GraphQLDemo.GraphQL
             Subscription = resolver.Resolve<MountainSubscription>();
             RegisterDirective(new LowercaseDirective());
 
-            
-
             var builder = new FieldMiddlewareBuilder();
             builder.Use<LowercaseFieldsMiddleware>();
             builder.ApplyTo(this);
