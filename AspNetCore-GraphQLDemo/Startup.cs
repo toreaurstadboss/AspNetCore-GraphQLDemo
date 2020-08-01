@@ -9,6 +9,7 @@ using Data;
 using Data.Repositories;
 using GraphQL;
 using GraphQL.Server;
+using GraphQL.Server.Internal;
 using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,11 +63,17 @@ namespace AspNetCore_GraphQLDemo
 
             services.AddScoped<MountainSchema>();
 
+            //services.AddScoped<IGraphQLExecuter, CustomGraphQlExecutor<MountainSchema>>();
+
             services.AddSingleton<MountainMessageService>();
+
+            services.AddScoped<SortingDirective>();
 
             services.AddSingleton<MountainDetailsDisplayedMessageService>();
 
-            services.AddGraphQL(x => { x.ExposeExceptions = _env.IsDevelopment(); }).AddGraphTypes(ServiceLifetime.Scoped)
+            services.AddGraphQL(x =>
+                {
+                    x.EnableMetrics = true; x.ExposeExceptions = _env.IsDevelopment(); x.SetFieldMiddleware = true; }).AddGraphTypes(ServiceLifetime.Scoped)
             .AddUserContextBuilder(httpContext => httpContext.User)
             .AddDataLoader()
             .AddWebSockets();
