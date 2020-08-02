@@ -11,6 +11,7 @@ using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Internal;
 using GraphQL.Server.Ui.Playground;
+using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using static AspNetCore_GraphQLDemo.GraphQL.Types.Directives.OrderbyDirective;
 
 namespace AspNetCore_GraphQLDemo
 {
@@ -67,9 +69,13 @@ namespace AspNetCore_GraphQLDemo
 
             services.AddSingleton<MountainMessageService>();
 
-            services.AddScoped<SortingDirective>();
-
             services.AddSingleton<MountainDetailsDisplayedMessageService>();
+
+            //foreach (var type in GetGraphQlTypes())
+            //{
+            //    services.AddScoped(type);
+            //}
+
 
             services.AddGraphQL(x =>
                 {
@@ -88,6 +94,15 @@ namespace AspNetCore_GraphQLDemo
             });
 
         }
+
+        //static IEnumerable<Type> GetGraphQlTypes()
+        //{
+        //    return typeof(Startup).Assembly
+        //        .GetTypes()
+        //        .Where(x => !x.IsAbstract &&
+        //                    (typeof(IObjectGraphType).IsAssignableFrom(x) ||
+        //                     typeof(IInputObjectGraphType).IsAssignableFrom(x)));
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
