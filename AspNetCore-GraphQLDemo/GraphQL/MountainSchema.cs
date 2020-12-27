@@ -18,8 +18,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL
             Query = resolver.Resolve<MountainQuery>();
             Mutation = resolver.Resolve<MountainMutation>();
             Subscription = resolver.Resolve<MountainSubscription>();
-            GraphTypeTypeRegistry.Register(typeof(OrderbyDirective.SortDirection), 
-                typeof(EnumerationGraphType<OrderbyDirective.SortDir>));
+ 
             RegisterDirective(new LowercaseDirective());
             RegisterDirective(new OrderbyDirective());
 

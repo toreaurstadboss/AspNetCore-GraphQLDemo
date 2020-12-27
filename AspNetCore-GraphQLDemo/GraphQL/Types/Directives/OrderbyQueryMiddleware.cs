@@ -19,7 +19,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types.Directives
             var selectionSet = context.Operation.SelectionSet.Selections.SelectMany(sel => sel.Children).OfType<SelectionSet>().FirstOrDefault();
             if (selectionSet == null || selectionSet?.Selections.Any() != true)
                 return inputData;
-            var sortingFields = new Dictionary<Field, SortDir>();
+            var sortingFields = new Dictionary<Field, string>();
             foreach (var field in selectionSet.Selections)
             {
                 var f = field as Field;
@@ -28,7 +28,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types.Directives
                 var sortDirective = f.Directives.FirstOrDefault(d => d.Name == "sort");
                 if (sortDirective == null)
                     continue;
-                sortingFields[f] = sortDirective.Arguments.FirstOrDefault(a => a.Name == "direction")?.Value?.Value?.ToString() == "desc" ? SortDir.desc : SortDir.asc;
+                sortingFields[f] = sortDirective.Arguments.FirstOrDefault(a => a.Name == "direction")?.Value?.Value?.ToString() == "desc" ? "desc" : "asc";
             }
 
             if (sortingFields.Any())
@@ -62,7 +62,7 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types.Directives
                     {
                         sortComparison = (double)xSortValue < (double)ySortValue ? -1 : (double)xSortValue == (double)ySortValue ? 0 : 1;
                     }
-                    if (sortField.Value == SortDir.desc)
+                    if (sortField.Value == "desc")
                     {
                         sortComparison *= -1;
                     }
