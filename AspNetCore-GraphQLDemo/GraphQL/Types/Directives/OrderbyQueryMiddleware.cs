@@ -2,6 +2,7 @@
 using GraphQL.Types;
 using System.Collections.Generic;
 using System.Linq;
+using GraphQL;
 using static AspNetCore_GraphQLDemo.GraphQL.Types.Directives.OrderbyDirective;
 using Field = GraphQL.Language.AST.Field;
 

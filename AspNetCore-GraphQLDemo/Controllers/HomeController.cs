@@ -1,6 +1,7 @@
 ﻿using AspNetCore_GraphQLDemo.GraphQL.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace AspNetCore_GraphQLDemo.Controllers
 {
@@ -8,6 +9,8 @@ namespace AspNetCore_GraphQLDemo.Controllers
     {
         private readonly MountainDetailsDisplayedMessageService _mountainDetailsDisplayedMessageService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+
 
         public HomeController(MountainDetailsDisplayedMessageService mountainDetailsDisplayedMessageService, IHttpContextAccessor httpContextAccessor)
         {

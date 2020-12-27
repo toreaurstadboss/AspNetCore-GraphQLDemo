@@ -1,8 +1,11 @@
-﻿using AspNetCore_GraphQLDemo.GraphQL.Types;
+﻿
+using AspNetCore_GraphQLDemo.GraphQL.Types;
 using AspNetCore_GraphQLDemo.GraphQL.Types.Directives;
 using GraphQL;
 using GraphQL.Instrumentation;
 using GraphQL.Types;
+using GraphQL.Utilities;
+
 
 namespace AspNetCore_GraphQLDemo.GraphQL
 {
@@ -11,9 +14,12 @@ namespace AspNetCore_GraphQLDemo.GraphQL
 
         public MountainSchema(IDependencyResolver resolver) : base(resolver)
         {
+           
             Query = resolver.Resolve<MountainQuery>();
             Mutation = resolver.Resolve<MountainMutation>();
             Subscription = resolver.Resolve<MountainSubscription>();
+            GraphTypeTypeRegistry.Register(typeof(OrderbyDirective.SortDirection), 
+                typeof(EnumerationGraphType<OrderbyDirective.SortDir>));
             RegisterDirective(new LowercaseDirective());
             RegisterDirective(new OrderbyDirective());
 

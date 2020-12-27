@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GraphQL;
 using GraphQL.Instrumentation;
 using GraphQL.Types;
 

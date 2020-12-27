@@ -2,6 +2,7 @@
 using AspNetCore_GraphQLDemo.GraphQL.Types;
 using Data;
 using Data.Repositories;
+using GraphQL;
 using GraphQL.Types;
 
 namespace AspNetCore_GraphQLDemo.GraphQL

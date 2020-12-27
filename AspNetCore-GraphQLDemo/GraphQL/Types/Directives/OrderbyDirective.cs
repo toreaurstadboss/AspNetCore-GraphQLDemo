@@ -26,8 +26,8 @@ namespace AspNetCore_GraphQLDemo.GraphQL.Types.Directives
         {
             public SortDirection()
             {
-                AddValue(new EnumValueDefinition { Name = "asc", Description = "Ascending", Value=1 });
-                AddValue(new EnumValueDefinition { Name = "desc", Description = "Descending", Value =-1 });
+                AddValue(new EnumValueDefinition { Name = SortDir.asc.ToString(), Description = "Ascending", Value=1 });
+                AddValue(new EnumValueDefinition { Name = SortDir.desc.ToString(), Description = "Descending", Value =-1 });
             }
         }
     }   
