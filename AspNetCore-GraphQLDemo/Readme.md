@@ -94,6 +94,26 @@ to specify which data is interesting.
 ![Dynamic table ](dynamictable.png)
 
 
+### Selecting a single mountain (example of query) 
+
+Just paste this into the playground query pane:
+
+```json
+
+ { mountain (id:{id:27}) {
+                        id
+                        fylke: county
+                        kommune: muncipiality
+                        hoydeOverHavet: calculatedMetresAboveSeaLevel
+                        offisieltNavn: officialName
+                        primaerfaktor: calculatedPrimaryFactor
+                        referansePunkt: referencePoint
+             }
+}
+
+```
+
+
 ### Subscription
 
 Go to the Playground (open up a tab) and paste in this subscription:

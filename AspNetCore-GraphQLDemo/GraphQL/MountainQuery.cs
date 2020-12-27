@@ -21,6 +21,15 @@ namespace AspNetCore_GraphQLDemo.GraphQL
                     return mountainFromDb;
                 });
 
+            //FieldAsync<MountainType>("selectmountain",
+            //   arguments: new QueryArguments(new QueryArgument(typeof(int)) { Name = "id" }),
+            //   resolve: async context =>
+            //   {
+            //       var mountain = context.GetArgument<MountainInfo>("id");
+            //       var mountainFromDb = await mountainRepository.GetById(mountain.Id);
+            //       return mountainFromDb;
+            //   }); //sadly, we need to inherit from IGraphType and cannot just have simple scalar arguments in GraphQL.Net.. 
+
         }
 
 

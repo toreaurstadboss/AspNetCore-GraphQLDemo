@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore_GraphQLDemo.GraphQL;
@@ -13,6 +14,7 @@ using GraphQL.Server.Internal;
 using GraphQL.Server.Ui.Playground;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebSockets;
@@ -21,7 +23,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using static AspNetCore_GraphQLDemo.GraphQL.Types.Directives.OrderbyDirective;
+using Microsoft.AspNetCore.Http; 
 
 namespace AspNetCore_GraphQLDemo
 {
@@ -112,6 +116,25 @@ namespace AspNetCore_GraphQLDemo
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
+
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    context.Response.Redirect("/Error");
+
+                    context.Response.StatusCode = 500;
+                    var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                    var exception = exceptionHandlerPathFeature.Error;
+
+                    var result = JsonConvert.SerializeObject(new { error = exception.Message });
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(result);
+
+                });
+            });
+
+
 
             app.UseStaticFiles(); 
             app.UseRouting();

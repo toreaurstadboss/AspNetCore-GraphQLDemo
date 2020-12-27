@@ -18,5 +18,8 @@ function LoadGraphQLData(gqlQuery, callBackFunction) {
 		variables: {}
 	}).then(result => {
 		callBackFunction(result);
+	}).catch(error => {
+		//debugger
+		toastr.error(error, 'GraphQL loading failed');
 	});
 }
