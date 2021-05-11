@@ -30,7 +30,7 @@
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
     "graphql": "^15.3.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react": "^16.13.1",
     "subscriptions-transport-ws": "^0.8.3"
   }
