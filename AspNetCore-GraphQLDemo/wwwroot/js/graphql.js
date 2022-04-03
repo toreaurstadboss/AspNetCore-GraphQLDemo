@@ -7,7 +7,7 @@ function LoadGraphQLData(gqlQuery, callBackFunction) {
 
 	var apolloClient = new Apollo.lib.ApolloClient({
 		networkInterface: Apollo.lib.createNetworkInterface({
-			uri: 'http://localhost:2542/graphql',
+			uri: 'http://localhost:8081/graphql',
 			transportBatching: true,
 		}), connectToDevTools: true
 	});

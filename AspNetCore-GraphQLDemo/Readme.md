@@ -32,7 +32,7 @@ The following query will retrieve mountain data using GraphQL:
 It is possible to retrieve this same data via Postman using the following GET call:
 
 ```bash
-http://localhost:2542/graphql?query={mountains{id fylke: county kommune: calculatedMetresAboveSeaLevel offisieltNavn: officialName primaerfaktor: calculatedPrimaryFactor referansePunkt: referencePoint}}
+http://localhost:8081/graphql?query={mountains{id fylke: county kommune: calculatedMetresAboveSeaLevel offisieltNavn: officialName primaerfaktor: calculatedPrimaryFactor referansePunkt: referencePoint}}
 ```
 
 

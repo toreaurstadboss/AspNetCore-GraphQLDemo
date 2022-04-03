@@ -5,7 +5,7 @@
 //function ConnectToWebSocket() {
 //// Create regular NetworkInterface by using apollo-client's API:
 //	const networkInterface = createNetworkInterface({
-//		uri: 'http://localhost:2542' // Your GraphQL endpoint
+//		uri: 'http://localhost:8081' // Your GraphQL endpoint
 //	});
 
 ////// Create WebSocket client

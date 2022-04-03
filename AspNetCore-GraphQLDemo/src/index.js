@@ -1,7 +1,7 @@
 ﻿import { ApolloClient } from 'apollo-client';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
-const graphqlSubscriptionEndpoint = `ws://localhost:2542/graphql`;
+const graphqlSubscriptionEndpoint = `ws://localhost:8081/graphql`;
 
 function connectToWebSocket() {
     // Create regular NetworkInterface by using apollo-client's API:
